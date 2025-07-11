@@ -359,3 +359,56 @@ An **Amazon Machine Image (AMI)** is a pre-configured template used to create EC
 - **Distributed Instances:** Ensures instances are distributed across multiple availability zones for high availability and fault tolerance.
 - **Integrates with ELB:** Works seamlessly with Elastic Load Balancers to distribute traffic across instances in the ASG.
 - **Optimizes Costs:** Automatically adjusts the number of instances to match demand, helping to optimize costs by avoiding over-provisioning.
+
+## AWS S3 - Simple Storage Service
+**AWS S3 (Simple Storage Service)** is an object storage service that provides highly scalable, durable, and secure storage for data. It is designed to store and retrieve any amount of data from anywhere on the web.
+
+### Key Features of S3
+Stores data as objects in buckets, which are containers for storing data.
+Globally unique bucket names across all AWS accounts.
+Region Specific: Buckets are created in specific AWS regions for low-latency access and compliance.
+Each object within a bucket has a unique key (name) and can be up to 5 TB in size.
+Multipart Upload is recommended for large files, allowing you to upload parts of an object in parallel.
+
+S3 Versioning
+- Enables you to keep multiple versions of an object in a bucket.
+S3 Replication
+- Automatically replicates objects across different AWS regions for disaster recovery and data redundancy.
+- SRR (Same Region Replication) replicates objects within the same region.
+- CRR (Cross Region Replication) replicates objects across different regions.
+S3 Lifecycle Policies
+- Automates the transition of objects to different storage classes based on age or other criteria.
+S3 Snow Family
+- A suite of physical devices for transferring large amounts of data to and from AWS. 
+- Includes Snowcone, Snowball, and Snowmobile for different data transfer needs.
+- AWS Snowcone : A small, portable device for a few terabytes of data.
+- AWS Snowball : A larger device for transferring petabytes of data.
+- AWS Snowmobile : A truck-sized device for transferring exabytes of data.
+S3 Storage Gateway
+- A hybrid cloud storage service that connects on-premises applications to S3.
+
+## AWS RDS - Relational Database Service
+**AWS RDS (Relational Database Service)** is a managed database service that simplifies the setup, operation, and scaling of relational databases in the cloud. It supports multiple database engines, including MySQL, PostgreSQL, Oracle, SQL Server, and Amazon Aurora.
+
+Amazon Aurora Offers
+- High performance and availability with up to 5X times the MySQL and 3X times the Postgres. 
+- Upto 15 read replicas for scaling read workloads.
+- Upto 128 TB of storage per database instance.
+
+RDS Read Replicas - Multi Region
+- Allows you to create read-only copies of your database in different regions for disaster recovery and low-latency access.
+- Supports automatic failover to a read replica in case of primary database failure.
+
+## AWS DynamoDB
+**AWS DynamoDB** is a fully managed NoSQL database service that provides fast and predictable performance with seamless scalability. It is designed for applications that require low-latency data access and can handle large amounts of data.
+
+DynamoDB offers a free tier with 25 GB of storage and up to 200 million requests per month, making it cost-effective for small applications.
+
+### Features of DynamoDB
+- **Serverless:** Automatically scales up or down based on traffic, eliminating the need for manual provisioning.
+- **Automatic Scaling:** Adjusts throughput capacity based on application demand.
+- **Zero Downtime:** Provides high availability and durability with automatic data replication across multiple availability zones.
+- **On demand pricing:** Pay only for the resources you use, with no upfront costs or long-term commitments.
+- **Idle Cost Savings:** Automatically scales down to zero when not in use, reducing costs.
+
+## DAX - DynamoDB Accelerator (DAX) is a fully managed, in-memory caching service for DynamoDB that provides fast read performance for applications with high read throughput requirements.
