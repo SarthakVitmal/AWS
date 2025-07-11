@@ -1,4 +1,5 @@
 ## What is Virtualization?
+
 Virtualization is a technology that enables the creation of virtual instances of hardware or software resources, allowing multiple operating systems or applications to run on a single physical machine. This is accomplished using hypervisors or virtualization software, which abstract the underlying hardware to provide efficient resource utilization, isolation, and management.
 
 ---
@@ -89,6 +90,7 @@ Cloud computing is a model that enables on-demand access to a shared pool of con
 **AWS Identity and Access Management (IAM)** is a service that enables you to manage access to AWS resources securely. It allows you to create and manage users, groups, and roles, and define permissions to control who can access specific AWS services and resources.
 
 **Key Features:**
+
 - **User Management:** Create and manage AWS users and groups, assign permissions, and control access.
 - **Role-Based Access Control:** Define roles with specific permissions and assign them to users or services for temporary access.
 - **Multi-Factor Authentication (MFA):** Enhance security by requiring additional authentication factors.
@@ -136,6 +138,7 @@ Cloud computing is a model that enables on-demand access to a shared pool of con
 **AWS EC2 (Elastic Compute Cloud)** is a web service that provides resizable compute capacity in the cloud. It allows users to launch and manage virtual servers (instances) on-demand, with a variety of instance types optimized for different workloads.
 
 **Terminologies:**
+
 - **Instance:** A virtual server in the EC2 environment.
 - **AMI (Amazon Machine Image):** Pre-configured template for launching instances.
 - **Instance Type:** Hardware configuration (CPU, memory, storage, networking).
@@ -156,10 +159,12 @@ Cloud computing is a model that enables on-demand access to a shared pool of con
 - **Default Behavior:** All inbound traffic blocked, all outbound traffic allowed.
 
 **Rule Definitions:**
+
 - **Protocol:** (TCP, UDP, ICMP)
 - **Port Range:** (e.g., 80 for HTTP, 22 for SSH)
 
 **Common Ports:**
+
 - **21:** FTP
 - **22:** SSH
 - **222:** SFTP
@@ -179,6 +184,7 @@ AWS offers a variety of EC2 instance types, grouped into families based on workl
 See the [official AWS EC2 Instance Types page](https://aws.amazon.com/ec2/instance-types/) for details.
 
 **Common Families:**
+
 - **General Purpose (t3, m5):** Balanced resources.
 - **Compute Optimized (c5):** High-performance processors.
 - **Memory Optimized (r5, x1):** For memory-intensive workloads.
@@ -210,11 +216,11 @@ See the [official AWS EC2 Instance Types page](https://aws.amazon.com/ec2/instan
 ```bash
 # List block devices and their mount points
 lsblk
-```
 # Example output:
 # NAME   MAJ:MIN RM   SIZE RO TYPE MOUNTPOINT
 # sda      8:0    0   100G  0 disk
 # ├─sda1   8:1    0    96G
+```
 
 ---
 
@@ -268,23 +274,88 @@ To access data from an EBS snapshot created in one Availability Zone (AZ) on an 
     ```
 
 10. **Unmount the Volume:**  
-    When finished, unmount the volume to safely detach it:
-    ```bash
-    sudo umount -l /mnt/mybackup
-    ```
+     When finished, unmount the volume to safely detach it:
+     ```bash
+     sudo umount -l /mnt/mybackup
+     ```
 
 11. **Verify Unmount:**  
-    Check that the mount point is no longer listed:
-    ```bash
-    df -h
-    ```
-    The output should no longer show `/mnt/mybackup` as a mounted filesystem.
+     Check that the mount point is no longer listed:
+     ```bash
+     df -h
+     ```
+     The output should no longer show `/mnt/mybackup` as a mounted filesystem.
 
-    --- 
+---
+
 ### Notes
 
 - **Cross-AZ Data Access:** You cannot directly attach an EBS volume across AZs; you must create a new volume from the snapshot in the desired AZ.
 - **Filesystem Compatibility:** If mounting an XFS filesystem cloned from another volume, always use the `-o nouuid` option to avoid UUID conflicts.
 - **Data Integrity:** Always unmount the volume after use to prevent data corruption.
 
---- 
+---
+
+## AMI - Amazon Machine Image
+
+An **Amazon Machine Image (AMI)** is a pre-configured template used to create EC2 instances. It contains the operating system (Windows, Mac, Linux), application server (Apache, Nginx), and applications required to launch an instance.
+
+### Key Features of AMI
+
+- **Customizable:** Users can create custom AMIs with specific configurations, software, and settings.
+- **Reusable:** AMIs can be reused to launch multiple instances with the same configuration.
+- **Region Specific:** AMIs are specific to a region, but can be copied across regions.
+- **Public and Private:** Users can share AMIs publicly or keep them private for their own use.
+
+### Types of AMIs
+
+- **Public AMIs:** Provided by AWS or the community, available for anyone to use.
+- **Private AMIs:** Created by users for their own use, containing custom configurations.
+- **Marketplace AMIs:** Available for purchase from the AWS Marketplace, often with additional software or support.
+
+### Create Launch Template vs Create Image
+
+- **Launch Template:** A reusable configuration for launching EC2 instances, including instance type, AMI, security groups, and other settings.
+- **Create Image:** Creates a new AMI from an existing EC2 instance, capturing its current state, including installed software and configurations.
+
+![AMI Comparison](/public/images/createImageVsCreateTemplate.png)
+
+### AWS Image Builder
+
+**AWS Image Builder** is a service that simplifies the creation, maintenance, and deployment of secure and up-to-date AMIs. It automates the process of building images, ensuring they are compliant with security standards and best practices.
+
+---
+
+## ELB - Elastic Load Balancer
+
+**AWS Elastic Load Balancer (ELB)** automatically distributes incoming application traffic across multiple targets, such as EC2 instances, containers, and IP addresses. It helps ensure high availability and fault tolerance for applications by routing traffic to healthy targets.
+
+### Key Features of ELB
+
+- **Automatic Scaling:** Adjusts the number of targets based on incoming traffic.
+- **Health Checks:** Monitors the health of targets and routes traffic only to healthy instances.
+- **SSL Termination:** Offloads SSL/TLS encryption and decryption from targets.
+
+### Types of Load Balancers
+
+- **Application Load Balancer (ALB):** Operates at the application layer (HTTP/HTTPS) and supports advanced routing, SSL termination, and WebSocket.
+- **Network Load Balancer (NLB):** Operates at the transport layer (TCP and UDP) and is designed for high performance and low latency.
+- **Gateway Load Balancer (GWLB):** Combines the features of a transparent network gateway and a load balancer, allowing you to deploy, scale, and manage third-party virtual appliances.
+- **Classic Load Balancer (CLB):** Legacy load balancer that supports both HTTP and TCP protocols. It is being phased out in favor of ALB and NLB.
+
+---
+
+## ASG - Auto Scaling Group
+
+**AWS Auto Scaling Group (ASG)** is a service that automatically adjusts the number of EC2 instances in a group based on demand. It helps maintain application availability and allows you to scale your resources up or down automatically.
+
+### Functions of ASG
+
+- **Dynamic Scaling:** Automatically adds or removes instances based on predefined policies, such as CPU utilization or network traffic.
+- **Main Instance Health:** Monitors the health of instances and replaces unhealthy ones to maintain application availability.
+- **Use Scaling Policies:** Define scaling policies to control how the ASG responds to changes in demand, such as increasing capacity during peak hours and reducing it during low traffic periods.
+- **Ensure Availability:** Distributes instances across multiple availability zones to enhance fault tolerance and availability.
+- **Scheduled Scaling:** Allows you to scale resources based on predictable traffic patterns, such as scaling up during business hours and scaling down at night.
+- **Distributed Instances:** Ensures instances are distributed across multiple availability zones for high availability and fault tolerance.
+- **Integrates with ELB:** Works seamlessly with Elastic Load Balancers to distribute traffic across instances in the ASG.
+- **Optimizes Costs:** Automatically adjusts the number of instances to match demand, helping to optimize costs by avoiding over-provisioning.
