@@ -411,4 +411,39 @@ DynamoDB offers a free tier with 25 GB of storage and up to 200 million requests
 - **On demand pricing:** Pay only for the resources you use, with no upfront costs or long-term commitments.
 - **Idle Cost Savings:** Automatically scales down to zero when not in use, reducing costs.
 
-## DAX - DynamoDB Accelerator (DAX) is a fully managed, in-memory caching service for DynamoDB that provides fast read performance for applications with high read throughput requirements.
+### DAX - DynamoDB Accelerator (DAX) is a fully managed, in-memory caching service for DynamoDB that provides fast read performance for applications with high read throughput requirements.
+
+## AWS Lambda
+**AWS Lambda** is a serverless compute service that allows you to run code without provisioning or managing servers. You can execute code in response to events, such as changes in data, HTTP requests, or scheduled tasks.
+
+### Key Features of AWS Lambda
+- **Event-Driven:** Automatically triggers code execution in response to events from AWS services or custom applications.
+- **Scalable:** Automatically scales to handle incoming requests, with no need for manual intervention.
+- **Pay-as-You-Go:** Charges based on the number of requests and the duration of code execution, with no upfront costs.
+- **Supports Multiple Languages:** Supports various programming languages, including Python, Node.js, Java, C#, and Go.
+- **Integration with AWS Services:** Easily integrates with other AWS services, such as S3, DynamoDB, and API Gateway, to build serverless applications.
+
+### Limitations of AWS Lambda
+- **Execution Time Limit:** Maximum execution time of 15 minutes per invocation.
+- **Stateless:** Each invocation is stateless, meaning no data is retained between invocations.
+- **Cold Start:** Initial invocation may experience a delay (cold start) as the service provisions resources.
+
+### When to Use AWS Lambda
+- **Image Processing:** Let's say you have an application that processes images uploaded to S3. You can use Lambda to automatically resize or convert images when they are uploaded.
+- **Data Transformation:** If you need to transform data in DynamoDB or S3, you can use Lambda to process and modify the data as it changes.
+- **Real-Time Notifications:** You can use Lambda to send notifications or trigger workflows in response to events, such as new user sign-ups or order placements.
+
+## AWS CloudFormation
+**AWS CloudFormation** is a service that allows you to define and provision AWS infrastructure as code. It enables you to create and manage AWS resources using templates written in JSON or YAML, making it easy to automate the deployment and management of your infrastructure.
+
+### Key Features of AWS CloudFormation
+- **Infrastructure as Code:** Define your infrastructure using code, making it easy to version control and share.
+- **Declarative Syntax:** Describe the desired state of your infrastructure, and CloudFormation takes care of provisioning and configuring resources.
+- **Stack Management:** Group related resources into stacks, allowing you to manage them as a single unit.
+- **Change Sets:** Preview changes before applying them to your stacks, ensuring you understand the impact of changes.
+- **Cross-Region and Cross-Account Support:** Deploy stacks across multiple AWS regions and accounts for greater flexibility and scalability.
+
+### Why to Use AWS CloudFormation
+- **Consistency:** Ensures consistent and repeatable deployments across environments.
+- **Automation:** Automates the provisioning and management of AWS resources, reducing manual effort and errors.
+- **Version Control:** Allows you to version control your infrastructure code, making it easy to track
